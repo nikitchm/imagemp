@@ -1,6 +1,6 @@
 from ..consumer import Consumer
 import numpy as np
-from analysis.behavior.tracker.findfish4class import FindFish4
+from tracker.findfish4class import FindFish4
 
 
 class FishTracker4(Consumer):

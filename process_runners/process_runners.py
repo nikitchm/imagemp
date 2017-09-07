@@ -2,9 +2,9 @@ from __future__ import print_function
 import ctypes
 import time
 import numpy as np
-from common.scheduler import Scheduler
-from imagemp.shared_frames.shared_frame import *
-from imagemp.shframe_grabbers.factory import get_grabber
+from .scheduler.scheduler import Scheduler
+from .shared_frames.shared_frame import *
+from .shframe_grabbers.factory import get_grabber
 from abstract import ProcessRunnerAbstract
 degugging = False
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract

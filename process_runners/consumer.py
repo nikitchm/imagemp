@@ -1,4 +1,4 @@
-from common.scheduler import Scheduler
+from ..scheduler.scheduler import Scheduler
 from ..shared_frames.shared_frame import SharedFrame
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract
 from shared_events import SharedEvents

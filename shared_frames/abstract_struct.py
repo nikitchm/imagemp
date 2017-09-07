@@ -1,5 +1,5 @@
 from shared_frame import SharedFrame
-from common.scheduler import Time
+from ..scheduler.scheduler import Time
 
 class SharedDataStructureAbstract(object):
     # This class exists exclusively as a guide for which methods and their signatures are expected

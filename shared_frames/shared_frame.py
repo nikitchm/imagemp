@@ -1,7 +1,7 @@
 from __future__ import print_function
 import sys
 # sys.path.append(r'/mnt/data/Dropbox/rnd/python/')
-import imagemp.add_parent_folder_to_path
+# import imagemp.add_parent_folder_to_path
 import ctypes
 import numpy as np
 import multiprocessing as mp
@@ -9,7 +9,7 @@ import multiprocessing as mp
 import copy
 import os
 # print(sys.path)
-from common.scheduler import Time, Scheduler
+from ..scheduler.scheduler import Time, Scheduler
 
 degugging = False
 

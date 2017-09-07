@@ -3,7 +3,7 @@ from abstract import ProcessRunnerAbstract
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract
 from ..shframe_grabbers.abstract import FrameGrabberAbstract
 from shared_events import SharedEvents
-from common.scheduler import Scheduler
+from ..scheduler.scheduler import Scheduler
 
 class FrameGrabberRunner(ProcessRunnerAbstract):
     # Present an interface for running different kinds of frame grabbers and

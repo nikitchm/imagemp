@@ -3,8 +3,9 @@ if __name__ == '__main__':
     #     __package__ = "imagemp"
     import ctypes
     import argparse, os
+    import imagemp
     from imagemp.process_runners.shared_events import SharedEvents
-    from common.scheduler import Scheduler
+    from imagemp.scheduler.scheduler import Scheduler
     # from shframe_grabbers.factory import get_grabber
     from imagemp.shframe_grabbers.factory import get_grabber
     from imagemp.process_runners.frame_grabber import FrameGrabberRunner
@@ -20,7 +21,8 @@ if __name__ == '__main__':
     ap.add_argument("-r", "--recvid", required=False, help="path to recorded video file")
     args = vars(ap.parse_args())
     vid_filename = args['video'] if args['video'] is not None else \
-        r'C:\data\rnd\Max_Experiments\behave\MTZCont_Optovin_fish5.vid.avi'
+        r'E:\10\22\optovinE3cond_fish50.vid.avi'
+        # r'C:\data\rnd\Max_Experiments\behave\MTZCont_Optovin_fish5.vid.avi'
         # r'D:\rnd\LargeData\behavior_sample_2015_09_24\MTZcontrol_fish5_DMSO_0.3.vid.avi'
         # r'C:\data\rnd\Max_Experiments\behave\MTZcont_Optovin_fish5.vid.stimLED.avi'
         # r'/mnt/data/rnd/LargeData/MTZCont_Optovin_fish5.vid.avi'
@@ -78,9 +80,9 @@ if __name__ == '__main__':
                         fps=30)
 
     # Start the analysis
-    analysis = FishTracker4(shared_data=shared_d,
-                            shared_events=shared_events,
-                            vid_av_filename=vid_av_filename)
+    # analysis = FishTracker4(shared_data=shared_d,
+    #                         shared_events=shared_events,
+    #                         vid_av_filename=vid_av_filename)
 
     display.start()
     # recorder.start()
