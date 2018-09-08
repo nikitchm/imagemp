@@ -1,0 +1,2 @@
+* 'abstract' method should be either renamed to 'base', or made abstractmethod from abc package
+    * abstractmethod / abstractproperty / ABCmeta
