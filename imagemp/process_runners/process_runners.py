@@ -5,7 +5,7 @@ import numpy as np
 from .scheduler.scheduler import Scheduler
 from .shared_frames.shared_frame import *
 from .shframe_grabbers.factory import get_grabber
-from abstract import ProcessRunnerAbstract
+from .abstract import ProcessRunnerAbstract
 degugging = False
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract
 

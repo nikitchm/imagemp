@@ -1,8 +1,8 @@
 from __future__ import print_function, division
-from abstract import ProcessRunnerAbstract
+from .abstract import ProcessRunnerAbstract
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract
 from ..shframe_grabbers.abstract import FrameGrabberAbstract
-from shared_events import SharedEvents
+from .shared_events import SharedEvents
 from ..scheduler.scheduler import Scheduler
 
 class FrameGrabberRunner(ProcessRunnerAbstract):

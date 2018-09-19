@@ -1,6 +1,6 @@
 from __future__ import print_function, division
-from shared_frame import SharedFrame
-from abstract_struct import SharedDataStructureAbstract
+from .shared_frame import SharedFrame
+from .abstract_struct import SharedDataStructureAbstract
 import ctypes
 
 class SharedSingleFrame(SharedDataStructureAbstract):

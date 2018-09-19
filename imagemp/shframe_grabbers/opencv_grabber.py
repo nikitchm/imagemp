@@ -1,6 +1,6 @@
 from __future__ import print_function
 import cv2
-from abstract import *
+from .abstract import *
 
 
 class FrameGrabberCV2File(FrameGrabberAbstract):

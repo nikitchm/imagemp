@@ -1,4 +1,4 @@
-from shared_frame import SharedFrame
+from .shared_frame import SharedFrame
 from ..scheduler.scheduler import Time
 
 class SharedDataStructureAbstract(object):

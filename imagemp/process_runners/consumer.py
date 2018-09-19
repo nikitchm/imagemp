@@ -1,9 +1,10 @@
 from ..scheduler.scheduler import Scheduler
 from ..shared_frames.shared_frame import SharedFrame
 from ..shared_frames.abstract_struct import SharedDataStructureAbstract
-from shared_events import SharedEvents
-from abstract import ProcessRunnerAbstract
+from .shared_events import SharedEvents
+from .abstract import ProcessRunnerAbstract
 import numpy as np
+import traceback
 
 class Consumer(ProcessRunnerAbstract):
     def __init__(self, shared_data=SharedDataStructureAbstract(),shared_events=SharedEvents(),
@@ -41,7 +42,7 @@ class Consumer(ProcessRunnerAbstract):
                     except Exception as e:
                         print('{} Exception: {}, {}'.format(self.class_name, type(e).__name__, e.args))
         except Exception as e:
-            print('{} ERROR: {}'.format(self.class_name.upper(), e))
+            print('{} ERROR: {}, traceback: {}'.format(self.class_name.upper(), e, traceback.format_exc()))
         finally:
             self.close()
             self.log('{} stopped.'.format(self.class_name))
