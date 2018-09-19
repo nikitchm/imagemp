@@ -24,8 +24,10 @@ from setuptools import setup, find_packages
 	  
 
 setup(name='imagemp',
-      version='0.1',
+      version='0.1.1',
       license='MIT',
       author='Max Nikitchenko',
       author_email='nikitchmtech@gmail.com',
-      description='Process image sequences in multiple processes with shared memory areas')
+      description='Process image sequences in multiple processes with shared memory areas',
+	  packages=find_packages(),
+	  zip_safe=False)
