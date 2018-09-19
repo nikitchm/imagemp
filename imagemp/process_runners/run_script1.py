@@ -4,7 +4,10 @@ if __name__ == '__main__':
     import ctypes
     import argparse, os
     import imagemp as imp
-    from imagemp.process_runners.examples.tracker_fish4 import FishTracker4
+    try:
+        from imagemp.process_runners.examples.tracker_fish4 import FishTracker4
+    except Exception as e:
+        print(e)
     import time
 
     # Get input parameters
@@ -34,7 +37,7 @@ if __name__ == '__main__':
     timestamp_type = ctypes.c_float
     array_type = ctypes.c_uint16
 
-    # Initialize the shared data structure
+    # Initialize the shared image data structure
     data_structure_type = 1
     if data_structure_type == 0:
         print('Using SharedSingleFrame')
@@ -70,8 +73,8 @@ if __name__ == '__main__':
                                 shared_events=shared_events)
 
     # Start the recorder
-    vfsplit = os.path.splitext(vid_filename)
-    vid_rec_filename = vfsplit[0] + '_rec' + vfsplit[1]
+    vfpath_split = os.path.splitext(vid_filename)
+    vid_rec_filename = vfpath_split[0] + '_rec' + vfpath_split[1]
     recorder = imp.Recorder(shared_data=shared_d,
                             shared_events=shared_events,
                             filename=vid_rec_filename,
@@ -84,12 +87,12 @@ if __name__ == '__main__':
     # analysis = FishTracker4(shared_data=shared_d,
     #                         shared_events=shared_events,
     #                         vid_av_filename=vid_av_filename)
-    analysis = imp.Consumer()
+    analysis = imp.Consumer()   # emtpy consumer process, complying with generic interprocess commands
 
     # Start the processes
     print('Starting the processes')
     display.start()
-    # recorder.start()
+    recorder.start()
     # analysis.start()
     # time.sleep(1)
     frame_grabber.start()
