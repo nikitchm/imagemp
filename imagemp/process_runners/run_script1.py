@@ -1,9 +1,13 @@
 # if __name__ == '__main__' and __package__ == None:
 if __name__ == '__main__':
-    #     __package__ = "imagemp"
-    import ctypes
-    import argparse, os
+    # __package__ = 'imagemp'
+    import ctypes           # need to define the types for the data in the memory shared between processes
+    import argparse, os     # provide interface for calling this script
     import imagemp as imp
+    from imagemp.process_runners.examples.simple_display import SimpleDisplay as imp_SimpleDisplay
+    from imagemp.process_runners.examples.recorder import Recorder as imp_Recorder
+
+    # If a fish tracker is available, it can run in separate process in addition to acquisition/recording/display/etc
     try:
         from imagemp.process_runners.examples.tracker_fish4 import FishTracker4
     except Exception as e:
@@ -15,13 +19,10 @@ if __name__ == '__main__':
     ap.add_argument("-v", "--video", required=False, help="path to input video file")
     ap.add_argument("-r", "--recvid", required=False, help="path to recorded video file")
     args = vars(ap.parse_args())
+    file_folder = os.path.dirname(os.path.realpath(__file__))
     vid_filename = args['video'] if args['video'] is not None else \
-        r'C:\data\rnd\Max_Experiments\behave\2017_10_31_ReaCh_pref\oxy-control_preference_1.vid.avi'
-        # r'C:\data\rnd\Max_Experiments\behave\MTZCont_Optovin_fish5.vid.avi'
-        # r'E:\10\22\optovinE3cond_fish50.vid.avi'
-        # r'D:\rnd\LargeData\behavior_sample_2015_09_24\MTZcontrol_fish5_DMSO_0.3.vid.avi'
-        # r'C:\data\rnd\Max_Experiments\behave\MTZcont_Optovin_fish5.vid.stimLED.avi'
-        # r'/mnt/data/rnd/LargeData/MTZCont_Optovin_fish5.vid.avi'
+        os.path.abspath(os.path.join(file_folder,
+                                     r'..\..\sample_data\MTZcont_Optovin_fish5.vid._cut_mpeg-4.avi'))
     vid_av_filename = os.path.splitext(vid_filename)[0] + '_average.npy'
 
     # Get image shape:
@@ -69,13 +70,13 @@ if __name__ == '__main__':
                                            scheduler=fg_scheduler)
 
     # Start a display
-    display = imp.SimpleDisplay(shared_data=shared_d,
+    display = imp_SimpleDisplay(shared_data=shared_d,
                                 shared_events=shared_events)
 
     # Start the recorder
     vfpath_split = os.path.splitext(vid_filename)
     vid_rec_filename = vfpath_split[0] + '_rec' + vfpath_split[1]
-    recorder = imp.Recorder(shared_data=shared_d,
+    recorder = imp_Recorder(shared_data=shared_d,
                             shared_events=shared_events,
                             filename=vid_rec_filename,
                             fourcc='XVID',
