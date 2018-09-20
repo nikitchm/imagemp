@@ -1,8 +1,10 @@
 # Measure time using start/time methods for timers in a dictionary
 # compute fps
-# Measure statistics for those timers if necessary
-# Single method for telling time meant to be overloaded if necessary
+# Measure statistics if necessary
+# .time() method here is implemented via the standard time library
+# and is meant to be overloaded if necessary (e.g., using more accurate methods)
 import time
+
 
 class Timer(object):
     def __init__(self, moving_ave_n=10):
@@ -56,6 +58,7 @@ class ElapsedTimer(object):
     def set_active_state(self, bool_state):
         self.active = bool_state
 
+
 class MovingAverageList(object):
     """
     An efficient python implementation of the moving average computation
@@ -94,7 +97,7 @@ if __name__ == '__main__':
     et = ElapsedTimer(moving_ave_n=10)
 
     sum = 0
-    n=10
+    n = 10
     for i in range(n):
         et.tic()
         t = .5+rand()/10

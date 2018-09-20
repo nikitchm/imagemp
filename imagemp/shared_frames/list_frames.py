@@ -5,6 +5,7 @@ import multiprocessing as mp
 import ctypes
 import copy
 
+
 class SharedFrameList(SharedDataStructureAbstract):
     # In this class the shared data structure is the list of SharedFrame elements which serves as
     # the circular buffer for the arriving data.
@@ -26,7 +27,6 @@ class SharedFrameList(SharedDataStructureAbstract):
         # self.__i_next_to_write = mp.Value(ctypes.c_int32, 0)
         self.overflow_di = overflow_di
         self.debugging = False
-
 
     @property
     def i_last(self):

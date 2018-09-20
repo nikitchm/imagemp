@@ -1,12 +1,12 @@
 from .shared_frame import SharedFrame
 from ..scheduler.scheduler import Time
 
+
 class SharedDataStructureAbstract(object):
     # This class exists exclusively as a guide for which methods and their signatures are expected
-    # to be implemented in all SharedElements classes to be cross-compatible. Notice though that if
-    # either of load_new_element and load_new_element is implemented the other can be omitted.
+    # to be implemented in all SharedElements classes to be cross-compatible.
     def __init__(self):
-        self.frame = SharedFrame((1,1)) # introduced here for code completion purpose only
+        self.frame = SharedFrame((1, 1))  # introduced here for code completion purpose only
         self.__clock = Time()
 
     # Copy the values from im into the existing array in a shared element in the class.

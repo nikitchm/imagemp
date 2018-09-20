@@ -6,6 +6,7 @@ from .abstract import ProcessRunnerAbstract
 import numpy as np
 import traceback
 
+
 class Consumer(ProcessRunnerAbstract):
     def __init__(self, shared_data=SharedDataStructureAbstract(),shared_events=SharedEvents(),
                  scheduler=Scheduler(), *args, **kwargs):

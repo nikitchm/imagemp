@@ -253,4 +253,4 @@ if __name__ == '__main__':
     print('sleeping in the main thread for 3 seconds and stopping the repeatitions after that.')
     time.sleep(3)
     sch.stop()
-    print('The repeatitions are stopped.')
+    print('The repetitions are stopped.')

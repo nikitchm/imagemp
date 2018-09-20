@@ -5,13 +5,13 @@ import sys
 import ctypes
 import numpy as np
 import multiprocessing as mp
-
 import copy
 import os
 # print(sys.path)
 from ..scheduler.scheduler import Time, Scheduler
 
 degugging = False
+
 
 def list_cum_mult(numbers):
     res = 1

@@ -5,6 +5,7 @@ from ..shframe_grabbers.abstract import FrameGrabberAbstract
 from .shared_events import SharedEvents
 from ..scheduler.scheduler import Scheduler
 
+
 class FrameGrabberRunner(ProcessRunnerAbstract):
     # Present an interface for running different kinds of frame grabbers and
     # schedulers in a separate process

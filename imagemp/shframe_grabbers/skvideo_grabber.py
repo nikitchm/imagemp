@@ -1,6 +1,6 @@
 from __future__ import print_function
 import skvideo.io
-from opencv_grabber import *
+from .opencv_grabber import *
 
 # WRONG INTERFACE for skvideo! REWRITE! Switch to the generator vreader in skvideo
 
