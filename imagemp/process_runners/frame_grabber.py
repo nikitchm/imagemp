@@ -7,8 +7,8 @@ from ..scheduler.scheduler import Scheduler
 
 
 class FrameGrabberRunner(ProcessRunnerAbstract):
-    # Present an interface for running different kinds of frame grabbers and
-    # schedulers in a separate process
+    """ Presents an interface for running different kinds of frame grabbers and
+    schedulers in separate processes """
     def __init__(self, shared_data=SharedDataStructureAbstract(), grabber_settings=None,
                  shared_events=SharedEvents(), scheduler=Scheduler(dt=0), grabber=FrameGrabberAbstract()):
         super(FrameGrabberRunner, self).__init__()
@@ -46,7 +46,7 @@ class FrameGrabberRunner(ProcessRunnerAbstract):
             self.grabber.close()
 
     def capture(self):
-        # capture into the shared element referred to by .next_element2write2()
+        # Capture into the shared element referred to by .next_element2write2()
         # next_shared_frame2write2 = self.shared_data.next_element2write2()
         self.shared_data.next_element2write2_update_ref()
         # ret = self.grabber.capture(next_shasred_frame2write2)

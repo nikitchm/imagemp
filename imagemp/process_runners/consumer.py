@@ -8,14 +8,17 @@ import traceback
 
 
 class Consumer(ProcessRunnerAbstract):
-    def __init__(self, shared_data=SharedDataStructureAbstract(),shared_events=SharedEvents(),
+    """ A general class 'consuming' the frames acquired by a frame grabber class. It contains
+    implementation of the methods that are likely to be shared between Consumer children classes,
+    as well as the stumps of the methods to be overloaded by the children."""
+    def __init__(self, shared_data=SharedDataStructureAbstract(), shared_events=SharedEvents(),
                  scheduler=Scheduler(), *args, **kwargs):
         super(Consumer, self).__init__()
         self.class_name = self.__class__.__name__
         self.shared_data = shared_data
         self.shared_events = shared_events
         self.scheduler = scheduler
-        self.last_timestamp = self.shared_events.frame_acquired.curval
+        self.last_timestamp = self.shared_events.frame_acquired.value
         self.im = np.empty((2,2))
         self._shared_frame = SharedFrame((0,0))
         self.next_to_acquire = 'last'   # 'last', 'next', ...

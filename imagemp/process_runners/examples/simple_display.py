@@ -2,6 +2,7 @@ from ..consumer import Consumer
 from ..timers import ElapsedTimer
 import cv2
 
+
 class SimpleDisplay(Consumer):
     def init_custom(self, *args, **kwargs):
         self.next_to_acquire = 'last'
