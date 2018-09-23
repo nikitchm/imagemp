@@ -1,3 +1,4 @@
+from __future__ import print_function
 # if __name__ == '__main__' and __package__ == None:
 if __name__ == '__main__':
     # __package__ = 'imagemp'
@@ -24,15 +25,24 @@ if __name__ == '__main__':
         os.path.abspath(os.path.join(file_folder,
                                      r'..\..\sample_data\MTZcont_Optovin_fish5.vid._cut_mpeg-4.avi'))
     vid_av_filename = os.path.splitext(vid_filename)[0] + '_average.npy'
+    source = 'file'   # 'camera' or 'file'
 
     # Get image shape:
-    grabber = imp.get_grabber(source='file', filename=vid_filename, init_unpickable=True)
+    # In order to determine the frame size, the VideoCapture should be started. However, the generated object
+    # won't be pickable -- it should be started/opened from within the new process (of a ProcessRunner). Thus,
+    # it's necessary to start the grabber, determine the frame size, close it, and start again with the
+    # init_unpickable set to False
+    print('Getting the size of the frame: ', end='')
+    if source == 'file':
+        grabber = imp.get_grabber(source='file', file_device=vid_filename, init_unpickable=True)
+    else:
+        grabber = imp.get_grabber(source='camera', file_device=0, init_unpickable=True)
     if grabber is None or not grabber.is_opened:
+        print("\nCouldn't open the grabber to determine the frame size: exiting")
         exit(1)
-    im_shape = grabber.capture()[0][1].shape
-    print(im_shape)
+    im_shape = grabber.capture()[0][1].shape    # (480, 480, 3)
+    print('im_shape : {}'.format(im_shape))
     grabber.close()
-    # im_shape = (480, 480, 3)
 
     # Define data types
     timestamp_type = ctypes.c_float
@@ -60,8 +70,13 @@ if __name__ == '__main__':
     shared_events = imp.SharedEvents()
 
     # Framegrabber scheduler
-    fg_scheduler = imp.Scheduler(dt=0.005)
-    grabber = imp.get_grabber(source='file', filename=vid_filename, init_unpickable=False)
+    fg_scheduler = imp.Scheduler(dt=0.05)
+
+    # Create the frame grabber object, but don't
+    if source == 'file':
+        grabber = imp.get_grabber(source='file', file_device=vid_filename, init_unpickable=False)
+    else:
+        grabber = imp.get_grabber(source='camera', file_device=0, init_unpickable=False)
 
     # Start the framegrabber
     frame_grabber = imp.FrameGrabberRunner(shared_data=shared_d,
@@ -98,10 +113,11 @@ if __name__ == '__main__':
     # time.sleep(1)
     frame_grabber.start()
 
-    #
+    # add all the processes that have to be stopped at the end to the shared_events structure
     for obj in [frame_grabber, display, recorder, analysis]:
         shared_events.add_mp_object(obj)
 
+    # Stop all the processes after t2run seconds:
     t2run = 5
     time.sleep(t2run)
     print('{} sec have expired. Exiting.'.format(t2run))
