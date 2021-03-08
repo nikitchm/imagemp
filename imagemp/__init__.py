@@ -8,4 +8,4 @@ from .process_runners.examples.simple_display import Consumer
 # from .process_runners.examples.simple_display import SimpleDisplay
 # from .process_runners.examples.recorder import Recorder
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
